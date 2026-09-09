@@ -70,59 +70,6 @@ Includes common snippets for rapid configuration:
 | `routeros.format.insertEmptyLineBetweenSections` | `true` | Insert a blank line between top-level sections. |
 | `routeros.lint.enable` | `true` | Enable syntax error diagnostics (unclosed quotes, mismatched braces). |
 
-## WinBox Syntax Colors in Any Theme
-
-If you want the WinBox terminal syntax colors (cyan paths, magenta verbs, green parameters, yellow strings, light-blue IPs) in your existing VS Code theme without changing your workbench UI, add this to your `settings.json`:
-
-```json
-"editor.tokenColorCustomizations": {
-    "textMateRules": [
-        {
-            "scope": ["entity.name.section.routeros", "punctuation.separator.path.routeros"],
-            "settings": { "foreground": "#00FFFF", "fontStyle": "bold" }
-        },
-        {
-            "scope": ["keyword.operator.command.routeros"],
-            "settings": { "foreground": "#FF00FF", "fontStyle": "bold" }
-        },
-        {
-            "scope": ["variable.parameter.routeros"],
-            "settings": { "foreground": "#00FF00", "fontStyle": "bold" }
-        },
-        {
-            "scope": ["punctuation.separator.key-value.routeros"],
-            "settings": { "foreground": "#FFFFFF" }
-        },
-        {
-            "scope": ["string.quoted.double.routeros"],
-            "settings": { "foreground": "#FFFF00" }
-        },
-        {
-            "scope": ["constant.numeric.ip.routeros", "constant.numeric.ipv6.routeros", "constant.numeric.mac.routeros"],
-            "settings": { "foreground": "#80D8FF" }
-        },
-        {
-            "scope": ["constant.language.boolean.routeros"],
-            "settings": { "foreground": "#FFD700", "fontStyle": "bold" }
-        },
-        {
-            "scope": ["variable.other.routeros", "variable.other.interpolated.routeros"],
-            "settings": { "foreground": "#FF9100" }
-        },
-        {
-            "scope": ["keyword.control.routeros", "storage.type.routeros", "support.function.builtin.routeros"],
-            "settings": { "foreground": "#FF4081", "fontStyle": "bold" }
-        },
-        {
-            "scope": ["comment.line.number-sign.routeros"],
-            "settings": { "foreground": "#888888", "fontStyle": "italic" }
-        }
-    ]
-}
-```
-
-Alternatively, select **MikroTik WinBox Dark** from `Preferences: Color Theme` (`Ctrl+K Ctrl+T`) for the full terminal aesthetic.
-
 ## Development
 
 ```bash
