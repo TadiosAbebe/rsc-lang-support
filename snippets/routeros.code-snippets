@@ -1,0 +1,101 @@
+{
+    "RouterOS Script Header": {
+        "prefix": "script-header",
+        "body": [
+            "# --------------------------------------------------",
+            "# Script: ${1:script_name}",
+            "# Author: ${2:Author}",
+            "# Date:   ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+            "# Description: ${3:Description}",
+            "# --------------------------------------------------",
+            "",
+            ":local logPrefix \"[${1:script_name}]\";",
+            ":log info \"$logPrefix Started\";",
+            "",
+            "$0",
+            "",
+            ":log info \"$logPrefix Finished\";"
+        ],
+        "description": "Boilerplate header for RouterOS scripts"
+    },
+    "Add IP Address": {
+        "prefix": "ip-add",
+        "body": [
+            "/ip address add address=${1:192.168.88.1/24} interface=${2:ether1} comment=\"${3:LAN Gateway}\""
+        ],
+        "description": "Add IP address to interface"
+    },
+    "Add Bridge": {
+        "prefix": "bridge-add",
+        "body": [
+            "/interface bridge add name=${1:bridge1} comment=\"${2:Main Bridge}\"",
+            "/interface bridge port add bridge=${1:bridge1} interface=${3:ether2}",
+            "/interface bridge port add bridge=${1:bridge1} interface=${4:ether3}"
+        ],
+        "description": "Add a bridge interface and add member ports"
+    },
+    "Add WireGuard Interface & Peer": {
+        "prefix": "wireguard-add",
+        "body": [
+            "/interface wireguard add name=${1:wg0} listen-port=${2:13231} comment=\"${3:WireGuard VPN}\"",
+            "/ip address add address=${4:10.10.10.1/24} interface=${1:wg0}",
+            "/interface wireguard peers add interface=${1:wg0} public-key=\"${5:PUBLIC_KEY}\" allowed-address=${6:10.10.10.2/32} comment=\"${7:Peer1}\""
+        ],
+        "description": "Configure WireGuard interface and peer"
+    },
+    "Firewall Accept Established/Related": {
+        "prefix": "fw-est-rel",
+        "body": [
+            "/ip firewall filter add chain=${1|input,forward|} connection-state=established,related action=accept comment=\"defconf: accept established,related\""
+        ],
+        "description": "Firewall rule accepting established,related connections"
+    },
+    "Firewall Drop Invalid": {
+        "prefix": "fw-drop-invalid",
+        "body": [
+            "/ip firewall filter add chain=${1|input,forward|} connection-state=invalid action=drop comment=\"defconf: drop invalid\""
+        ],
+        "description": "Firewall rule dropping invalid connections"
+    },
+    "Firewall NAT Masquerade": {
+        "prefix": "fw-nat-masq",
+        "body": [
+            "/ip firewall nat add chain=srcnat out-interface-list=${1:WAN} action=masquerade comment=\"defconf: masquerade\""
+        ],
+        "description": "Source NAT Masquerade rule"
+    },
+    "Script If-Else": {
+        "prefix": "if-else",
+        "body": [
+            ":if (${1:condition}) do={",
+            "    ${2::put \"condition met\"}",
+            "} else={",
+            "    ${3::put \"condition not met\"}",
+            "}"
+        ],
+        "description": "RouterOS :if / :else block"
+    },
+    "Script For-Each": {
+        "prefix": "foreach",
+        "body": [
+            ":foreach ${1:item} in=[${2:/interface find}] do={",
+            "    :local name [/${3:interface} get $${1:item} name];",
+            "    :put \"Interface: $name\";",
+            "    $0",
+            "}"
+        ],
+        "description": "RouterOS :foreach loop over command find results"
+    },
+    "Script Safe Execute (do-on-error)": {
+        "prefix": "do-catch",
+        "body": [
+            ":do {",
+            "    ${1:# risky command}",
+            "} on-error={",
+            "    :log error \"An error occurred: $0\";",
+            "}"
+        ],
+        "description": "RouterOS :do { ... } on-error={ ... } error handling"
+    }
+}
+

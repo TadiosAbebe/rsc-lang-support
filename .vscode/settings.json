@@ -1,0 +1,13 @@
+{
+    "[routeros]": {
+        "editor.defaultFormatter": "nzt.rsc-lang-support"
+    },
+    "[mikrotik]": {
+        "editor.defaultFormatter": "nzt.rsc-lang-support"
+    },
+    "files.associations": {
+        "*.rsc": "routeros",
+        "*.routeros": "routeros"
+    }
+}
+

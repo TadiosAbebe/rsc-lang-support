@@ -1,0 +1,182 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "MikroTik RouterOS",
+    "scopeName": "source.routeros",
+    "patterns": [
+        { "include": "#comments" },
+        { "include": "#line-continuation" },
+        { "include": "#strings" },
+        { "include": "#script-keywords" },
+        { "include": "#command-paths" },
+        { "include": "#command-verbs" },
+        { "include": "#variables" },
+        { "include": "#properties" },
+        { "include": "#constants" },
+        { "include": "#ip-addresses" },
+        { "include": "#mac-addresses" },
+        { "include": "#numbers" },
+        { "include": "#operators" },
+        { "include": "#brackets" }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.line.number-sign.routeros",
+                    "match": "#.*$"
+                }
+            ]
+        },
+        "line-continuation": {
+            "patterns": [
+                {
+                    "name": "constant.character.escape.continuation.routeros",
+                    "match": "\\\\[ \\t]*$"
+                }
+            ]
+        },
+        "strings": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double.routeros",
+                    "begin": "\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.routeros",
+                            "match": "\\\\([abefnrtv?_\"$\\\\]|x[0-9a-fA-F]{2})"
+                        },
+                        {
+                            "name": "variable.other.interpolated.routeros",
+                            "match": "\\$[a-zA-Z0-9_]+"
+                        }
+                    ]
+                }
+            ]
+        },
+        "script-keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.routeros",
+                    "match": "(?<![\\w-])\\:(if|else|do|while|for|foreach|from|to|step|in|return|error)(?![\\w-])"
+                },
+                {
+                    "name": "storage.type.routeros",
+                    "match": "(?<![\\w-])\\:(global|local|set|unset)(?![\\w-])"
+                },
+                {
+                    "name": "support.function.builtin.routeros",
+                    "match": "(?<![\\w-])\\:(put|log|beep|delay|resolve|retry|execute|parse|serialize|deserialize|len|typeof|pick|find|toarray|tobool|toid|toip|toip6|tonum|tostr|totime|convert|timestamp|certificate)(?![\\w-])"
+                }
+            ]
+        },
+        "command-paths": {
+            "patterns": [
+                {
+                    "name": "entity.name.section.routeros",
+                    "match": "(?<=^|[\\s;\\[{])/(interface|ip|ipv6|routing|mpls|system|tool|user|certificate|disk|file|queue|radius|snmp|caps-man|iot|container|lora|zerotier)((/|[ \\t]+)(?!(add|set|remove|enable|disable|print|export|find|get|monitor|reset|edit|comment|move)\\b)[a-zA-Z0-9_-]+)*"
+                },
+                {
+                    "name": "punctuation.separator.path.routeros",
+                    "match": "(?<=^|[\\s;\\[{])/"
+                }
+            ]
+        },
+        "command-verbs": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.command.routeros",
+                    "match": "(?<![\\w-])(add|set|remove|enable|disable|print|export|find|get|monitor|reset|edit|comment|move)(?![\\w-])"
+                }
+            ]
+        },
+        "variables": {
+            "patterns": [
+                {
+                    "name": "variable.other.routeros",
+                    "match": "\\$([a-zA-Z0-9_]+|\"[^\"]+\")"
+                }
+            ]
+        },
+        "properties": {
+            "patterns": [
+                {
+                    "match": "(?<![\\w-])([a-zA-Z0-9_-]+)(=)",
+                    "captures": {
+                        "1": { "name": "variable.parameter.routeros" },
+                        "2": { "name": "punctuation.separator.key-value.routeros" }
+                    }
+                }
+            ]
+        },
+        "constants": {
+            "patterns": [
+                {
+                    "name": "constant.language.boolean.routeros",
+                    "match": "(?<![\\w-])(yes|no|true|false)(?![\\w-])"
+                },
+                {
+                    "name": "constant.language.routeros",
+                    "match": "(?<![\\w-])(none|unknown|all|any|dynamic|invalid|disabled|running)(?![\\w-])"
+                }
+            ]
+        },
+        "ip-addresses": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.ip.routeros",
+                    "match": "\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?:\\/(?:3[0-2]|[12]?[0-9]))?\\b"
+                },
+                {
+                    "name": "constant.numeric.ipv6.routeros",
+                    "match": "\\b(?:[0-9a-fA-F]{1,4}:){1,7}:?(?:[0-9a-fA-F]{1,4})?(?:\\/(?:12[0-8]|1[0-1][0-9]|[1-9]?[0-9]))?\\b"
+                }
+            ]
+        },
+        "mac-addresses": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.mac.routeros",
+                    "match": "\\b(?:[0-9A-Fa-f]{2}[:-]){5}[0-9A-Fa-f]{2}\\b"
+                }
+            ]
+        },
+        "numbers": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.routeros",
+                    "match": "(?<![\\w-])-?\\d+(?:\\.\\d+)?(?:[smhd]|ms|us|ns|k|M|G|T|KiB|MiB|GiB|bps|kbps|Mbps|Gbps)?(?![\\w-])"
+                }
+            ]
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.logical.routeros",
+                    "match": "(&&|\\|\\||!)"
+                },
+                {
+                    "name": "keyword.operator.comparison.routeros",
+                    "match": "(==|!=|<=|>=|<|>|~)"
+                },
+                {
+                    "name": "keyword.operator.arithmetic.routeros",
+                    "match": "(\\+|\\-|\\*|/(?![a-zA-Z]))"
+                }
+            ]
+        },
+        "brackets": {
+            "patterns": [
+                {
+                    "name": "punctuation.section.brackets.routeros",
+                    "match": "[\\[\\]\\{\\}\\(\\)]"
+                },
+                {
+                    "name": "punctuation.terminator.statement.routeros",
+                    "match": ";"
+                }
+            ]
+        }
+    }
+}
+

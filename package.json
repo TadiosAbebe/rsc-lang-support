@@ -1,0 +1,158 @@
+{
+    "name": "rsc-lang-support",
+    "displayName": "MikroTik RouterOS Language Support",
+    "description": "Language support for MikroTik RouterOS (.rsc) files: syntax highlighting, formatting, folding, and completions.",
+    "version": "1.1.0",
+    "publisher": "nzt",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nzt/rsc-lang-support"
+    },
+    "bugs": {
+        "url": "https://github.com/nzt/rsc-lang-support/issues"
+    },
+    "homepage": "https://github.com/nzt/rsc-lang-support#readme",
+    "engines": {
+        "vscode": "^1.90.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Snippets",
+        "Formatters"
+    ],
+    "keywords": [
+        "mikrotik",
+        "routeros",
+        "rsc",
+        "winbox",
+        "network",
+        "router"
+    ],
+    "main": "./dist/extension.js",
+    "activationEvents": [
+        "onLanguage:routeros",
+        "onLanguage:mikrotik"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "routeros",
+                "aliases": [
+                    "RouterOS",
+                    "MikroTik RouterOS",
+                    "rsc",
+                    "mikrotik"
+                ],
+                "extensions": [
+                    ".rsc",
+                    ".routeros"
+                ],
+                "configuration": "./language-configuration.json"
+            },
+            {
+                "id": "mikrotik",
+                "aliases": [
+                    "MikroTik",
+                    "mikrotik"
+                ],
+                "extensions": [
+                    ".rsc"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "routeros",
+                "scopeName": "source.routeros",
+                "path": "./syntaxes/routeros.tmLanguage.json"
+            },
+            {
+                "language": "mikrotik",
+                "scopeName": "source.routeros",
+                "path": "./syntaxes/routeros.tmLanguage.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "routeros",
+                "path": "./snippets/routeros.code-snippets"
+            },
+            {
+                "language": "mikrotik",
+                "path": "./snippets/routeros.code-snippets"
+            }
+        ],
+        "configurationDefaults": {
+            "[routeros]": {
+                "editor.defaultFormatter": "nzt.rsc-lang-support"
+            },
+            "[mikrotik]": {
+                "editor.defaultFormatter": "nzt.rsc-lang-support"
+            }
+        },
+        "commands": [
+            {
+                "command": "routeros.restartServer",
+                "title": "RouterOS: Restart Language Server"
+            }
+        ],
+        "themes": [
+            {
+                "label": "MikroTik WinBox Dark",
+                "uiTheme": "vs-dark",
+                "path": "./themes/mikrotik-winbox-dark.json"
+            },
+            {
+                "label": "MikroTik WinBox Light",
+                "uiTheme": "vs",
+                "path": "./themes/mikrotik-winbox-light.json"
+            }
+        ],
+        "configuration": {
+            "title": "MikroTik RouterOS",
+            "properties": {
+                "routeros.format.indentSize": {
+                    "type": "number",
+                    "default": 4,
+                    "description": "Number of spaces to use for indentation in .rsc files."
+                },
+                "routeros.format.indentSectionCommands": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Indent commands and declarations that are under the scope of a command path (e.g. /ip/firewall/filter)."
+                },
+                "routeros.format.insertEmptyLineBetweenSections": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Insert empty lines between top-level configuration sections when formatting."
+                },
+                "routeros.lint.enable": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable syntax validation and linter diagnostics for .rsc files."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "build": "node esbuild.js",
+        "watch": "node esbuild.js --watch",
+        "vscode:prepublish": "node esbuild.js --minify",
+        "package": "vsce package --no-dependencies",
+        "test": "node esbuild.js && node --test out/test/routeros.test.js"
+    },
+    "dependencies": {
+        "vscode-languageclient": "^10.1.1",
+        "vscode-languageserver": "^10.1.1",
+        "vscode-languageserver-textdocument": "^1.0.14"
+    },
+    "devDependencies": {
+        "@types/node": "^22.20.2",
+        "@types/vscode": "~1.90.0",
+        "@vscode/vsce": "^3.9.2",
+        "esbuild": "^0.28.2",
+        "typescript": "^7.0.2"
+    }
+}

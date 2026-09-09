@@ -1,0 +1,193 @@
+{
+    "$schema": "vscode://schemas/color-theme",
+    "name": "MikroTik WinBox Dark",
+    "type": "dark",
+    "colors": {
+        "editor.background": "#000000",
+        "editor.foreground": "#e0e0e0",
+        "editorCursor.foreground": "#00ff00",
+        "editorLineNumber.foreground": "#555555",
+        "editorLineNumber.activeForeground": "#00ffff",
+        "editor.selectionBackground": "#264f78",
+        "editor.inactiveSelectionBackground": "#3a3d41",
+        "editor.selectionHighlightBackground": "#add6ff26",
+        "editorIndentGuide.background1": "#222222",
+        "editorIndentGuide.activeBackground1": "#00ffff44",
+        "editorBracketMatch.background": "#00ffff33",
+        "editorBracketMatch.border": "#00ffff",
+        "editorGutter.background": "#000000",
+        "activityBar.background": "#111111",
+        "activityBar.foreground": "#00ffff",
+        "sideBar.background": "#0d0d0d",
+        "sideBar.foreground": "#cccccc",
+        "sideBarSectionHeader.background": "#1a1a1a",
+        "statusBar.background": "#003b4f",
+        "statusBar.foreground": "#ffffff",
+        "statusBarItem.hoverBackground": "#005573",
+        "titleBar.activeBackground": "#0d0d0d",
+        "titleBar.activeForeground": "#ffffff",
+        "tab.activeBackground": "#1a1a1a",
+        "tab.activeForeground": "#00ffff",
+        "tab.inactiveBackground": "#0a0a0a",
+        "tab.inactiveForeground": "#888888"
+    },
+    "tokenColors": [
+        {
+            "name": "RouterOS Comments",
+            "scope": [
+                "comment",
+                "comment.line",
+                "comment.line.number-sign.routeros"
+            ],
+            "settings": {
+                "foreground": "#888888",
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "name": "RouterOS Section Command Paths (Cyan)",
+            "scope": [
+                "entity.name.section.routeros",
+                "punctuation.separator.path.routeros"
+            ],
+            "settings": {
+                "foreground": "#00ffff",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "RouterOS Command Verbs (Magenta)",
+            "scope": [
+                "keyword.operator.command.routeros"
+            ],
+            "settings": {
+                "foreground": "#ff00ff",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "RouterOS Script Keywords (Bright Magenta)",
+            "scope": [
+                "keyword.control.routeros",
+                "storage.type.routeros",
+                "support.function.builtin.routeros"
+            ],
+            "settings": {
+                "foreground": "#ff4081",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "RouterOS Parameters / Keys (Bright Green)",
+            "scope": [
+                "variable.parameter.routeros"
+            ],
+            "settings": {
+                "foreground": "#00ff00",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "RouterOS Key-Value Separator (=)",
+            "scope": [
+                "punctuation.separator.key-value.routeros"
+            ],
+            "settings": {
+                "foreground": "#ffffff"
+            }
+        },
+        {
+            "name": "RouterOS Double Quoted Strings (Yellow)",
+            "scope": [
+                "string.quoted.double.routeros",
+                "string.quoted"
+            ],
+            "settings": {
+                "foreground": "#ffff00"
+            }
+        },
+        {
+            "name": "RouterOS Escape Characters",
+            "scope": [
+                "constant.character.escape.routeros"
+            ],
+            "settings": {
+                "foreground": "#ff5252"
+            }
+        },
+        {
+            "name": "RouterOS Line Continuation",
+            "scope": [
+                "constant.character.escape.continuation.routeros"
+            ],
+            "settings": {
+                "foreground": "#ff5252",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "RouterOS IP & MAC Addresses (Light Blue)",
+            "scope": [
+                "constant.numeric.ip.routeros",
+                "constant.numeric.ipv6.routeros",
+                "constant.numeric.mac.routeros"
+            ],
+            "settings": {
+                "foreground": "#80d8ff"
+            }
+        },
+        {
+            "name": "RouterOS Numbers & Durations",
+            "scope": [
+                "constant.numeric.routeros",
+                "constant.numeric"
+            ],
+            "settings": {
+                "foreground": "#82b1ff"
+            }
+        },
+        {
+            "name": "RouterOS Booleans & Special Values",
+            "scope": [
+                "constant.language.boolean.routeros",
+                "constant.language.routeros"
+            ],
+            "settings": {
+                "foreground": "#ffd700",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "RouterOS Variables",
+            "scope": [
+                "variable.other.routeros",
+                "variable.other.interpolated.routeros"
+            ],
+            "settings": {
+                "foreground": "#ff9100"
+            }
+        },
+        {
+            "name": "RouterOS Operators",
+            "scope": [
+                "keyword.operator.logical.routeros",
+                "keyword.operator.comparison.routeros",
+                "keyword.operator.arithmetic.routeros"
+            ],
+            "settings": {
+                "foreground": "#ff80ab"
+            }
+        },
+        {
+            "name": "RouterOS Brackets & Delimiters",
+            "scope": [
+                "punctuation.section.brackets.routeros",
+                "punctuation.terminator.statement.routeros"
+            ],
+            "settings": {
+                "foreground": "#ffffff"
+            }
+        }
+    ]
+}
+
